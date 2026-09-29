@@ -1,0 +1,228 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * ─── ByteSpace design tokens ────────────────────────────────────────────────
+ * Brand palette extracted from the reference design:
+ *   Primary   → #003BE2  (electric blue — CTAs, links, brand bands)
+ *   Secondary → #D4FB20  (lime accent — highlights, progress, active chips)
+ *   Ink       → #040819  (headings) / #242528 (body-strong) / #4B4C53 (muted)
+ *   Surface   → #FFFFFF  / #F5F5F6 (muted surface) / border #CED0D3
+ *
+ * The fixed light palette uses lime accents and electric-blue brand bands.
+ * ────────────────────────────────────────────────────────────────────────────
+ */
+@theme inline {
+  --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins), var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-clash-display), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-clash: var(--font-clash-display), ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ByteSpace extensions */
+  --color-surface-brand: var(--surface-brand);
+  --color-surface-brand-foreground: var(--surface-brand-foreground);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.19 0.06 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.19 0.06 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.19 0.06 265);
+
+  /* Brand primary — #003BE2 */
+  --primary: oklch(0.478 0.249 264.3);
+  --primary-foreground: oklch(1 0 0);
+
+  /* Brand secondary — #D4FB20 (lime) */
+  --secondary: oklch(0.93 0.203 118.1);
+  --secondary-foreground: oklch(0.28 0.013 260);
+
+  --muted: oklch(0.968 0.002 270);
+  --muted-foreground: oklch(0.47 0.012 270);
+  --accent: oklch(0.955 0.025 265);
+  --accent-foreground: oklch(0.35 0.15 264);
+  --destructive: oklch(0.577 0.245 27.3);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.86 0.006 270);
+  --input: oklch(0.86 0.006 270);
+  --ring: oklch(0.478 0.249 264.3);
+  --chart-1: oklch(0.478 0.249 264.3);
+  --chart-2: oklch(0.93 0.203 118.1);
+  --chart-3: oklch(0.6 0.15 200);
+  --chart-4: oklch(0.55 0.18 300);
+  --chart-5: oklch(0.7 0.15 60);
+
+  /* Full-width brand bands (hero / CTA) — same electric blue in light mode */
+  --surface-brand: oklch(0.478 0.249 264.3);
+  --surface-brand-foreground: oklch(1 0 0);
+
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.19 0.06 265);
+  --sidebar-primary: oklch(0.478 0.249 264.3);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.955 0.025 265);
+  --sidebar-accent-foreground: oklch(0.35 0.15 264);
+  --sidebar-border: oklch(0.86 0.006 270);
+  --sidebar-ring: oklch(0.478 0.249 264.3);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans scroll-smooth;
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Headings use the display face by default */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-semibold tracking-tight text-balance;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+.not-found-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 8%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 8%) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+.not-found-number {
+  background-image: linear-gradient(
+    180deg,
+    #d4fb20 0%,
+    rgb(212 251 32 / 96%) 25%,
+    rgb(212 251 32 / 81%) 50.5%,
+    rgb(212 251 32 / 61%) 68%,
+    rgb(255 255 255 / 0%) 100%
+  );
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.partners-marquee {
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.partners-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: partners-marquee-left 32s linear infinite;
+}
+
+.partners-marquee-group {
+  display: flex;
+  width: max-content;
+  min-width: 100vw;
+  flex: none;
+  align-items: center;
+  justify-content: space-around;
+  gap: clamp(2rem, 5vw, 5rem);
+  margin: 0;
+  padding-inline: clamp(1.5rem, 4vw, 4rem);
+  list-style: none;
+}
+
+@keyframes partners-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners-marquee-track {
+    animation: none;
+  }
+}
+
+/* ─── Auth pages ─────────────────────────────────────────────────────────
+   Blue canvas with the faint white grid from the sign-up design. */
+.auth-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 8%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 8%) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+@media (max-width: 1023px) {
+  .auth-grid {
+    background-size: 64px 64px;
+  }
+}

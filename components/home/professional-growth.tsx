@@ -1,0 +1,180 @@
+"use client";
+
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { FeatureCheck } from "@/components/ui/feature-check";
+import { GrowthCollage } from "@/components/home/growth-collage";
+import { CreatorCollage } from "@/components/home/creator-collage";
+import { creatorBenefits, growthStats } from "@/data/stats";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+/** Radial glow palette from Figma (node 22-321). Order = paint order. */
+const GLOW_LAYERS = [
+  "radial-gradient(50% 50% at 50% 50%, rgba(203, 252, 1, 0.4) 0%, rgba(203, 252, 1, 0.092) 53%, rgba(203, 252, 1, 0.024) 75%, rgba(203, 252, 1, 0) 100%)",
+  "radial-gradient(50% 50% at 50% 50%, rgba(0, 59, 226, 0.08) 0%, rgba(0, 59, 226, 0.0184) 53%, rgba(0, 59, 226, 0.0048) 75%, rgba(0, 59, 226, 0) 100%)",
+  "radial-gradient(50% 50% at 50% 50%, rgba(0, 59, 226, 0.24) 0%, rgba(0, 59, 226, 0.0552) 53%, rgba(0, 59, 226, 0.0144) 75%, rgba(0, 59, 226, 0) 100%)",
+  "radial-gradient(50% 50% at 50% 50%, rgba(0, 59, 226, 0.16) 0%, rgba(0, 59, 226, 0.0368) 53%, rgba(0, 59, 226, 0.0096) 75%, rgba(0, 59, 226, 0) 100%)",
+  "radial-gradient(50% 50% at 50% 50%, rgba(203, 252, 1, 0.6) 0%, rgba(203, 252, 1, 0.138) 53%, rgba(203, 252, 1, 0.036) 75%, rgba(203, 252, 1, 0) 100%)",
+] as const;
+
+/** Position and size of each glow (percent of the section box). */
+const GLOW_BOXES = [
+  "left-[-18%] top-[-30%] h-[110%] w-[70%]",
+  "bottom-[-35%] left-[-15%] h-[95%] w-[65%]",
+  "right-[-22%] top-[-10%] h-[120%] w-[80%]",
+  "left-[-25%] top-[25%] h-[85%] w-[55%]",
+  "bottom-[-30%] left-[5%] h-[90%] w-[60%]",
+] as const;
+
+export function ProfessionalGrowth() {
+  const rootRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const root = rootRef.current;
+      if (!root) return;
+
+      const mm = gsap.matchMedia(root);
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set("[data-anim]", { opacity: 1, y: 0 });
+        gsap.set("[data-glow]", { opacity: 1 });
+      });
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+        tl.fromTo(
+          "[data-glow]",
+          { opacity: 0 },
+          { opacity: 1, duration: 1.4, stagger: 0.08 },
+          0
+        )
+          .fromTo(
+            "[data-anim='title']",
+            { opacity: 0, y: 44 },
+            { opacity: 1, y: 0, duration: 0.9 },
+            0.15
+          )
+          .fromTo(
+            "[data-anim='body']",
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.8 },
+            0.35
+          )
+          .fromTo(
+            "[data-anim='stats']",
+            { opacity: 0, y: 26 },
+            { opacity: 1, y: 0, duration: 0.8 },
+            0.5
+          );
+
+        gsap.utils.toArray<HTMLElement>("[data-count]", root).forEach((el) => {
+          const target = Number(el.dataset.count);
+          const suffix = el.dataset.suffix ?? "";
+          const state = { v: 0 };
+
+          gsap.to(state, {
+            v: target,
+            duration: 1.6,
+            ease: "power2.out",
+            scrollTrigger: { trigger: el, start: "top 85%", once: true },
+            onUpdate: () => {
+              el.textContent = `${Math.round(state.v)}${suffix}`;
+            },
+          });
+        });
+      });
+
+      return () => mm.revert();
+    },
+    { scope: rootRef }
+  );
+
+  return (
+    <section
+      ref={rootRef}
+      aria-labelledby="growth-title"
+      className="relative isolate overflow-hidden bg-[#FAFAFA] py-20 lg:py-28"
+    >
+      {/* Radial glow layers */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        {GLOW_LAYERS.map((background, i) => (
+          <div
+            key={i}
+            data-glow
+            style={{ background, opacity: 0 }}
+            className={`absolute rounded-full blur-[60px] ${GLOW_BOXES[i]}`}
+          />
+        ))}
+      </div>
+
+      <Container>
+        {/* Copy + stats | collage */}
+        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          <div className="flex flex-col items-start gap-10">
+            <SectionHeading
+              id="growth-title"
+              align="left"
+              title="Your Path to Professional Growth Starts Here!"
+              subtitle="Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need."
+              className="[&_h2]:max-w-[30rem] [&_p]:max-w-[30rem]"
+            />
+            <dl className="flex gap-12 lg:gap-16">
+              {growthStats.map((stat) => (
+                <div key={stat.label} className="flex flex-col">
+                  <dt className="order-2 text-base text-muted-foreground">
+                    {stat.label}
+                  </dt>
+                  <dd
+                    data-anim="stats"
+                    data-count={parseInt(stat.value, 10)}
+                    data-suffix={stat.value.replace(/[0-9]/g, "")}
+                    className="order-1 font-heading text-4xl font-medium tracking-tight text-primary opacity-100 lg:text-5xl"
+                  >
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <GrowthCollage />
+        </div>
+
+        {/* Creator collage | copy */}
+        <div className="mt-16 grid items-center gap-14 lg:mt-20 lg:grid-cols-2 lg:gap-20">
+          <div className="order-2 lg:order-1">
+            <CreatorCollage />
+          </div>
+          <div className="order-1 flex flex-col items-start gap-8 lg:order-2">
+            <h2
+              data-anim="title"
+              className="max-w-xl text-balance text-4xl leading-[1.2] opacity-0 lg:text-[2.75rem]"
+            >
+              Create & Manage Courses Easily.
+            </h2>
+            <p
+              data-anim="body"
+              className="max-w-xl text-pretty text-base leading-relaxed text-muted-foreground opacity-0 lg:text-lg"
+            >
+              <strong className="font-semibold text-foreground">ByteSpace</strong> supports
+              individuals or entities in the creation, publication, and administration of
+              educational courses.
+            </p>
+            <ul data-anim="stats" className="flex flex-col gap-4 opacity-0">
+              {creatorBenefits.map((benefit) => (
+                <FeatureCheck key={benefit}>{benefit}</FeatureCheck>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
