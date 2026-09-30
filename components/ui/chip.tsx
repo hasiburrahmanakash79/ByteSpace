@@ -19,7 +19,7 @@ export function Chip({ selected = false, className, type, ...props }: ChipProps)
         "focus-visible:ring-2 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         selected
           ? "bg-secondary text-secondary-foreground"
-          : "bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+          : "bg-muted text-muted-foreground hover:bg-[#d3fb2036] hover:text-accent-foreground",
         className
       )}
       {...props}

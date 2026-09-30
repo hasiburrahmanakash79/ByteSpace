@@ -35,22 +35,22 @@ export function AuthShell({ mode }: AuthShellProps) {
       });
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap
-          .timeline({ defaults: { ease: "power3.out" } })
-          .fromTo("[data-anim='logo']", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.6 }, 0)
-          .fromTo("[data-anim='intro']", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.1)
-          .fromTo("[data-anim='card-back']", { opacity: 0, x: -50, rotate: -4 }, { opacity: 1, x: 0, rotate: -2, duration: 0.9 }, 0.25)
-          .fromTo("[data-anim='card-front']", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.9 }, 0.4)
-          .fromTo("[data-anim='coil']", { opacity: 0, scale: 0.5, rotate: -30 }, { opacity: 1, scale: 1, rotate: 12, duration: 0.8, ease: "back.out(1.6)" }, 0.6)
-          .fromTo("[data-anim='triangle']", { opacity: 0, y: 40, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.5)" }, 0.7)
-          .fromTo("[data-anim='students']", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8 }, 0.85)
-          .fromTo("[data-anim='form']", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, 0.3);
+  gsap
+    .timeline({ defaults: { ease: "power3.out" } })
+    .fromTo("[data-anim='logo']", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.6 }, 0)
+    .fromTo("[data-anim='intro']", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.1)
+    .fromTo("[data-anim='card-back']", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.9 }, 0.25)
+    .fromTo("[data-anim='card-front']", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.9 }, 0.4)
+    .fromTo("[data-anim='coil']", { opacity: 0, scale: 0.5, rotate: -30 }, { opacity: 1, scale: 1, rotate: 12, duration: 0.8, ease: "back.out(1.6)" }, 0.6)
+    .fromTo("[data-anim='triangle']", { opacity: 0, y: 40, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.5)" }, 0.7)
+    .fromTo("[data-anim='students']", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8 }, 0.85)
+    .fromTo("[data-anim='form']", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, 0.3);
 
-        // Idle float on the decorative pieces.
-        gsap.to("[data-float='1']", { y: 10, duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: -1 });
-        gsap.to("[data-float='2']", { y: -8, duration: 3.8, ease: "sine.inOut", yoyo: true, repeat: -1 });
-        gsap.to("[data-float='cards']", { y: 10, duration: 3.5, ease: "sine.inOut", yoyo: true, repeat: -1 });
-      });
+  // Idle float on the decorative pieces.
+  gsap.to("[data-float='1']", { y: 10, duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: -1 });
+  gsap.to("[data-float='2']", { y: -8, duration: 3.8, ease: "sine.inOut", yoyo: true, repeat: -1 });
+  gsap.to("[data-float='cards']", { y: 10, duration: 3.5, ease: "sine.inOut", yoyo: true, repeat: -1 });
+});
 
       return () => mm.revert();
     },

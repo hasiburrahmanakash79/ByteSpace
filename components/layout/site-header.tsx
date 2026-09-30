@@ -34,8 +34,10 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-40 transition-colors duration-300",
-        scrolled ? "bg-primary shadow-md" : "bg-transparent"
+        "fixed inset-x-0 top-0 z-40 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        scrolled
+          ? "bg-primary/60 shadow-sm backdrop-blur-md"
+          : "bg-transparent"
       )}
     >
       <Container className="flex h-20 items-center justify-between gap-6 py-0 lg:h-24">
@@ -100,11 +102,15 @@ export function SiteHeader() {
             <Link href="/sign-in">Sign In</Link>
           </Button>
 
-          <Button asChild variant="ghost" className="
+          <Button
+            asChild
+            variant="ghost"
+            className="
               text-surface-brand-foreground
               hover:bg-surface-brand-foreground/10
               hover:text-surface-brand-foreground
-            ">
+            "
+          >
             <Link href="/sign-up">Join Us</Link>
           </Button>
 
@@ -162,7 +168,7 @@ export function SiteHeader() {
         id="mobile-nav"
         hidden={!open}
         className={cn(
-          "mx-5 rounded-3xl border border-border bg-card p-6 shadow-xl lg:hidden",
+          "mx-5 rounded-3xl border border-white/20 bg-primary/60 p-6 shadow-xl backdrop-blur-md lg:hidden",
           "motion-safe:animate-in motion-safe:fade-in-0 motion-safe:zoom-in-95"
         )}
       >
@@ -174,10 +180,10 @@ export function SiteHeader() {
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="
-                    block rounded-xl px-4 py-3
-                    text-lg font-medium text-foreground
+                    block rounded-xl p-3
+                    text-lg font-medium text-white
                     transition-colors
-                    hover:bg-accent
+                    hover:bg-white/10
                     focus-visible:outline-2
                     focus-visible:outline-offset-2
                     focus-visible:outline-ring
@@ -191,11 +197,11 @@ export function SiteHeader() {
         </nav>
 
         {/* Mobile Actions */}
-        <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
+        <div className="mt-4 flex items-center gap-3 border-t border-white/20 pt-5">
           <Button
             asChild
             variant="outline"
-            className="flex-1 cursor-pointer"
+            className="flex-1 cursor-pointer border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
           >
             <Link href="/sign-in" onClick={() => setOpen(false)}>
               Sign In
@@ -205,7 +211,7 @@ export function SiteHeader() {
           <Button
             asChild
             variant="secondary"
-            className="flex-1 cursor-pointer"
+            className="flex-1 cursor-pointer bg-secondary text-primary hover:bg-secondary/90"
           >
             <Link href="/sign-up" onClick={() => setOpen(false)}>
               Join Us

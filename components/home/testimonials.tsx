@@ -50,7 +50,13 @@ export function Testimonials() {
         <ul className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial) => (
             <li key={testimonial.id}>
-              <figure className="flex h-full flex-col rounded-[24px] bg-white hover:shadow-lg p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+              <figure
+                className="group flex h-full flex-col rounded-[24px] bg-white p-6
+                  shadow-[0_4px_20px_rgba(0,0,0,0.02)]
+                  transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                  hover:-translate-y-2 hover:scale-[1.02]
+                  hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
+              >
                 {/* Avatar */}
                 <figcaption className="flex items-center">
                   <Image
@@ -58,13 +64,16 @@ export function Testimonials() {
                     alt=""
                     width={testimonial.avatar.width}
                     height={testimonial.avatar.height}
-                    className="h-20 w-20 rounded-full object-cover"
+                    className="h-20 w-20 rounded-full object-cover
+                      transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                      group-hover:scale-105"
                   />
                 </figcaption>
 
                 {/* Name + Role */}
                 <div className="mt-6">
-                  <span className="block text-[20px] font-semibold leading-tight text-black">
+                  <span className="block text-[20px] font-semibold leading-tight text-black
+                    transition-colors duration-500 group-hover:text-[#1557ff]">
                     {testimonial.name}
                   </span>
 
@@ -75,7 +84,8 @@ export function Testimonials() {
 
                 {/* Quote */}
                 <blockquote className="mt-7">
-                  <p className="text-[17px] leading-[1.7] text-[#646464]">
+                  <p className="text-[17px] leading-[1.7] text-[#646464]
+                    transition-colors duration-500 group-hover:text-[#444]">
                     "{testimonial.quote}"
                   </p>
                 </blockquote>

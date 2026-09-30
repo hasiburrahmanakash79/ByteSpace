@@ -61,7 +61,7 @@ export function CreatorCollage() {
       <div data-depth="0.25" data-float className="relative z-10">
         <div data-anim="collage" className="opacity-0">
           <Image
-            src="/images/growth/left-girl-full-section.png"
+            src="/images/growth/girl.png"
             alt="Creator with a headset holding a tablet, surrounded by Total Revenue and Year to Date earnings cards and a Happy Students badge"
             width={2345}
             height={2876}

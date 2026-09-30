@@ -8,14 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-/**
- * Right-hand collage of the "Professional Growth" section.
- *
- * The artwork (`right-boy-full-section.png`) is the design's own composite —
- * course card, student cutout, Learning Progress float and lime coil baked
- * into one transparent PNG — so it is rendered as a single layer and animated
- * as a whole: entrance fade-up, gentle idle float, and scroll parallax.
- */
 export function GrowthCollage() {
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -71,7 +63,7 @@ export function GrowthCollage() {
       <div data-depth="0.25" data-float className="relative z-10">
         <div data-anim="collage" className="opacity-0">
           <Image
-            src="/images/growth/right-boy-full-section.png"
+            src="/images/growth/boy-card.png"
             alt="Course preview card with a smiling student holding a laptop, a 55% learning progress badge and a lime coil"
             width={2812}
             height={2788}

@@ -19,18 +19,28 @@ export function LearningPaths() {
             <li key={path.id} className="w-full max-w-[167px]">
               <Link
                 href="/#courses"
-                className="group flex aspect-square w-full flex-col items-center justify-center gap-4 rounded-3xl border border-border bg-card transition-colors hover:border-[#b9e200] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                className="group relative flex aspect-square w-full flex-col items-center justify-center gap-4 rounded-3xl border border-border bg-card
+                  transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                  hover:-translate-y-2 hover:scale-[1.03] hover:border-[#b9e200] hover:shadow-xl hover:shadow-[#b9e200]/15
+                  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
               >
-                <span className="flex size-16 items-center justify-center rounded-full bg-secondary text-secondary-foreground transition-transform duration-300 group-hover:scale-110">
+                <span
+                  className="flex size-16 items-center justify-center rounded-full bg-secondary text-secondary-foreground
+                    transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                    group-hover:scale-110 group-hover:bg-[#b9e200]/35 group-hover:shadow-md"
+                >
                   <Image
                     src={categoryIconSrc[path.icon as keyof typeof categoryIconSrc]}
                     alt=""
                     width={36}
                     height={36}
-                    className="size-9"
+                    className="size-9 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                   />
                 </span>
-                <span className="px-2 text-center text-lg font-medium">{path.label}</span>
+
+                <span className="px-2 text-center text-lg font-medium transition-colors duration-500 ease-out group-hover:text-[#b9e200]">
+                  {path.label}
+                </span>
               </Link>
             </li>
           ))}
