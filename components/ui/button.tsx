@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   [
-    // Base — pill shape from the design, generous focus ring (WCAG 2.4.13)
     "inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap transition-colors outline-none select-none",
     "focus-visible:ring-2 focus-visible:ring-ring/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     "disabled:pointer-events-none disabled:opacity-50",
@@ -13,13 +12,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        /** Electric blue — main CTAs (Search, Get Started) */
         primary:
           "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80",
-        /** Lime — secondary accent CTAs (hero Search, Start Creating) */
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/90 active:bg-secondary/80",
-        /** White card on brand bands */
         surface: "bg-background text-foreground hover:bg-accent border border-border",
         outline:
           "border border-border bg-transparent hover:bg-accent hover:text-accent-foreground",

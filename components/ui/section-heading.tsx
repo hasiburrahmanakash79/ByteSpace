@@ -1,21 +1,16 @@
 import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
-  /** Anchors the heading for aria-labelledby references. */
   id?: string;
   title: string;
   subtitle?: string;
   align?: "center" | "left";
-  /** Heading level for document outline correctness. */
   as?: "h1" | "h2" | "h3";
   size?: "md" | "lg";
   className?: string;
 };
 
-/**
- * Title (Poppins) + subtitle (Satoshi) pair used by every section —
- * keeps type scale and font roles consistent across the site.
- */
+
 export function SectionHeading({
   id,
   title,

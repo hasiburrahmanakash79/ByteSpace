@@ -4,15 +4,9 @@ import { siteConfig } from "@/config/site";
 
 type LogoProps = {
   className?: string;
-  /** Show the wordmark next to the mark. */
   withWordmark?: boolean;
 };
 
-/**
- * Brand lockup — mark + wordmark set in Clash Display.
- * The accessible name comes from the linked text in the header/footer,
- * so the visuals here are decorative.
- */
 export function Logo({ className }: LogoProps) {
   return (
     <span className={cn("inline-flex items-end gap-2", className)}>

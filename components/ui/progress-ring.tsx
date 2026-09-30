@@ -2,15 +2,11 @@ import { cn } from "@/lib/utils";
 
 type ProgressCardProps = {
   label?: string;
-  /** Progress percentage 0–100. */
   value: number;
   className?: string;
 };
 
-/**
- * "Learning Progress 55%" glass card from the hero.
- * Exposed as a proper progressbar for assistive technology.
- */
+
 export function ProgressCard({
   label = "Learning Progress",
   value,

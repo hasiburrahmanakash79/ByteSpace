@@ -2,14 +2,8 @@
 
 import { useEffect } from "react";
 
-/**
- * While mounted, hides the site header / footer / skip link so auth pages
- * render distraction-free (no chrome). On unmount everything is restored.
- */
 export function ChromeHider() {
   useEffect(() => {
-    // The root layout wraps the skip link, header, main and footer in
-    // a `display: contents` #site-chrome div — hide everything except main.
     const chrome = document.getElementById("site-chrome");
     if (!chrome) return;
 

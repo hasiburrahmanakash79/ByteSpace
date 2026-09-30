@@ -3,10 +3,6 @@
 import { useId, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 
-/**
- * Newsletter signup island. Client-side only so it can own submit state;
- * announces success via aria-live for screen readers.
- */
 export function NewsletterForm() {
   const emailId = useId();
   const [status, setStatus] = useState<"idle" | "subscribed">("idle");

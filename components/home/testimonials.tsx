@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import { Container } from "@/components/ui/container";
 import { testimonials } from "@/data/testimonials";
 

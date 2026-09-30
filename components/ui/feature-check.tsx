@@ -6,7 +6,6 @@ type FeatureCheckProps = {
   className?: string;
 };
 
-/** Check badge + medium label row ("Share Your Expertise", …). */
 export function FeatureCheck({ children, className }: FeatureCheckProps) {
   return (
     <li className={cn("flex items-center gap-3", className)}>

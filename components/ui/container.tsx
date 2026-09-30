@@ -1,9 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/**
- * Shared page container — matches the reference's 120px side padding on
- * desktop, collapsing to fluid gutters on smaller screens.
- */
 export function Container({
   className,
   ...props
