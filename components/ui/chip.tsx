@@ -4,10 +4,6 @@ type ChipProps = Omit<React.ComponentProps<"button">, "aria-pressed"> & {
   selected?: boolean;
 };
 
-/**
- * Pill-shaped filter chip. Announced as a toggle button so screen readers
- * hear the selected state when categories are filtered.
- */
 export function Chip({ selected = false, className, type, ...props }: ChipProps) {
   return (
     <button

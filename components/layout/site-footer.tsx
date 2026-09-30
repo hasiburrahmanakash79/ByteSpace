@@ -12,7 +12,6 @@ export function SiteFooter() {
       <Container className="py-10 sm:py-14 lg:py-20">
         {/* Main */}
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] lg:gap-20">
-          {/* Brand + newsletter */}
           <div className="flex min-w-0 flex-col">
             <Link href="/" aria-label="ByteSpace — home" className="w-fit">
               <Logo />
