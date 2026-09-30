@@ -36,7 +36,7 @@ export function SiteHeader() {
       className={cn(
         "fixed inset-x-0 top-0 z-40 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
         scrolled
-          ? "bg-primary/60 shadow-sm backdrop-blur-md"
+          ? "bg-primary/90 shadow-sm backdrop-blur-md"
           : "bg-transparent"
       )}
     >
